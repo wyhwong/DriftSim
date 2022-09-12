@@ -15,8 +15,6 @@ The configs of the initial waveform, target waveform, and match can be adjusted 
 The script generates a .npy file, which contains the following:
 ```bash
 ├── Setting info:
-│   ├── Sampling frequency of the initial signal
-│   ├── Sampling frequency of LISA (Can be changed accordingly)
 │   ├── Initial luminosity distance of the simulated GW signal
 │   └── Hubble constant
 │
