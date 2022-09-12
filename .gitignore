@@ -1,0 +1,6 @@
+results
+fd_visualization
+__pycache__
+.ipynb_checkpoints
+*.npy
+*.pdf

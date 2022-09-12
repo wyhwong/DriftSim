@@ -1,0 +1,28 @@
+base_waveform:
+    m1: 2000. # in solar mass
+    m2: 2000. # in solar mass
+    S1x: 0.
+    S1y: 0.
+    S1z: 0.
+    S2x: 0.
+    S2y: 0.
+    S2z: 0.
+    distance: 1000. # in Mpc
+    inclination: 0.
+    phiRef: 0.
+    longAscNodes: 0.
+    eccentricity: 0.
+    meanPerAno: 0.
+    deltaT: 1. # in second
+    f_min: 0.0013
+    f_ref: 0.01
+    LALparams: null
+    approximant: 'TaylorF2'
+
+target_waveform:
+    deltaT: 5. # in second
+    length: 4. # in year
+
+match:
+    low_frequency_cutoff: 0.0001
+    high_frequency_cutoff: 1.
