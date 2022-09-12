@@ -1,18 +1,17 @@
 # !/usr/bin/env python3
-
 # This script compute the match and SNR of simulated GW drifted-driftless signal pairs
 # In the distinguishability test, the settings are the following:
 # The binary systems have the same set of intrinsic parameters
 # Only difference: one waveform is Hubble drifted and one is driftless
-# Here the 'driftless' means that the distance of the GW source is assumed unchanged during the GW emission
+# Here the 'driftless' means that the distance of the GW source is assumed unchanged
 # The Hubble drift means the change in redshift of the GW source due to universal expansion
 # This Hubble drift increases over time and affects the frequency and amplitude of GW signals
 # Detector used: LISA, mission lifetime: 4 years
 
 import argparse
 import logging
-import numpy as np
 import os
+import numpy as np
 import yaml
 from utils.waveform import Waveform
 from utils.psd import resample_psd
@@ -23,11 +22,9 @@ def main(args, output_dir):
     # Setting of the simulated waveform
     hubble_constant = args.hubble
     luminosity_distance = args.distance
-    config = yaml.load(open("config/config.yaml", 'r'),
-                       Loader=yaml.SafeLoader)
-    output_path = os.path.abspath('%s/data(H=%.3f,D=%.3f).npy'%(
-                                  output_dir, hubble_constant,
-                                  luminosity_distance))
+    with open("config/config.yaml", "r") as file:
+        config = yaml.load(file, Loader=yaml.SafeLoader)
+    output_path = os.path.abspath(f'{output_dir}/data(H={hubble_constant:.3f},D={luminosity_distance:.3f}).npy')
 
     init_waveform = Waveform(config['base_waveform'])
     logging.info(f"Constructed initial waveform, length: {len(init_waveform.amp)}.")
@@ -60,25 +57,25 @@ def main(args, output_dir):
     if args.plot:
         driftless_fs = driftless_ts.to_frequencyseries()
         labels = ["$h_{drifted}(f)$", "$h_{driftless}(f)$"]
-        filename = "(H=%.3f,D=%.3f).pdf"%(hubble_constant, luminosity_distance)
+        filename = f"(H={hubble_constant:.3f},D={luminosity_distance:.3f}).pdf"
         plot_fd([drifted_fs, driftless_fs],
                 labels, lisa_psd, filename)
 
 if __name__ == "__main__":
     # Setting of parser, inputting parameters
-    parser = argparse.ArgumentParser(description = "Compute the match and optimal SNR of drifted and not drifted waveforms with different distance and Hubble Constant.")
+    parser = argparse.ArgumentParser(description="Setting of the distinguishability test")
     parser.add_argument("-D", "--distance", type=float,
                         default=1000.,
-                        help = "Value of the targeted luminosity distance in Mpc")
+                        help="Value of the targeted luminosity distance in Mpc")
     parser.add_argument("-H", "--hubble", type=float,
                         default=67.8,
-                        help = "Value of the targeted Hubble constant")
+                        help="Value of the targeted Hubble constant")
     parser.add_argument("--psd", type=str,
                         default='config/lisa.txt',
-                        help = "Path to the psd.txt")
-    parser.add_argument("--plot", action = "store_true",
+                        help="Path to the psd.txt")
+    parser.add_argument("--plot", action="store_true",
                         default=False,
-                        help = "Option to plot the frequency domain")
+                        help="Option to plot the frequency domain")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO)
     logging.info(f"Input parameters: {args}")
@@ -86,7 +83,7 @@ if __name__ == "__main__":
     # Output directory, we create one if it doesn't exist
     output_dir = os.path.abspath('results')
     check = os.path.isdir(output_dir)
-    if check == False:
+    if not check:
         os.mkdir(output_dir)
         logging.info(f"Output directory {output_dir} does not exists. Created.")
 

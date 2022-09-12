@@ -6,6 +6,7 @@ import numpy as np
 import pycbc
 from bilby.core import utils
 from scipy import interpolate
+from scipy import constants
 
 class Waveform():
     def __init__(self, config):
@@ -27,10 +28,9 @@ class Waveform():
         target_length = config['length'] * 365. * 24. * 60. * 60. + 0.1
         delta_time = self.config['deltaT']
         target_dt = config['deltaT']
-        c = 2.998e8
-        init_redshift = hubble_constant * luminosity_distance * 1000. / c
-        end_redshift = init_redshift * np.exp(target_length * hubble_constant * 3.24078e-20)
-        converted_length = int(target_length * 1.00001 / (1 + end_redshift) / delta_time)
+        redshift = hubble_constant * luminosity_distance * 1000. / constants.c
+        redshift *= np.exp(target_length * hubble_constant * 3.24078e-20)
+        converted_length = int(target_length * 1.00001 / (1 + redshift) / delta_time)
         converted_start = len(self.amp) - converted_length
         amp = self.amp[converted_start:]
         phase = self.phase[converted_start:]
@@ -40,10 +40,10 @@ class Waveform():
         hubble_drift = np.exp(time * hubble_constant * 3.24078e-20)
         if drifted:
             amp = amp / hubble_drift * (self.distance_mpc / luminosity_distance)
-            redshift = (hubble_constant * luminosity_distance * 1000. / c) * hubble_drift
+            redshift = (hubble_constant * luminosity_distance * 1000. / constants.c) * hubble_drift
         else:
             amp = amp * (self.distance_mpc / luminosity_distance)
-            redshift = hubble_constant * luminosity_distance * 1000. / c
+            redshift = hubble_constant * luminosity_distance * 1000. / constants.c
         raw_complex_strain = amp * np.exp(-1j*phase)
         time = time * (1 + redshift)
 
