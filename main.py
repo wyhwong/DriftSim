@@ -59,12 +59,10 @@ def main(args, output_dir):
 
     if args.plot:
         driftless_fs = driftless_ts.to_frequencyseries()
-        drifted_label = "$h_{drifted}(f)$"
-        driftless_label = "$h_{driftless}(f)$"
+        labels = ["$h_{drifted}(f)$", "$h_{driftless}(f)$"]
         filename = "(H=%.3f,D=%.3f).pdf"%(hubble_constant, luminosity_distance)
         plot_fd([drifted_fs, driftless_fs],
-                [drifted_label, driftless_label],
-                lisa_psd, filename)
+                labels, lisa_psd, filename)
 
 if __name__ == "__main__":
     # Setting of parser, inputting parameters
