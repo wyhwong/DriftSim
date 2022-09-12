@@ -14,11 +14,11 @@ The configs of the initial waveform, target waveform, and match can be adjusted 
 ## Results
 The script generates a .npy file, which contains the following:
 ```bash
-├── Setting info:
+├── Setting information:
 │   ├── Initial luminosity distance of the simulated GW signal
 │   └── Hubble constant
 │
-└── statistics info:
+└── Statistics information:
     ├── Overlap of the drifted-driftless signal pair
     ├── SNR of the drifted signal
     └── SNR of the driftless signal
