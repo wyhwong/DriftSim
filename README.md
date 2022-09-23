@@ -23,10 +23,10 @@ make clean
 ```
 ## Example
 ```bash
-# Simulate a drifted-driftless GW signal pair with H=67.8 km s$^-1$ Mpc$^-1$, D=1000 Mpc. Visualize the frequency-domain GW pair 
+# Simulate a drifted-driftless GW signal pair with H=67.8 km/s/Mpc, D=1000 Mpc. Visualize the frequency-domain GW pair 
 make args="--plot" start
 
-# Simulate a drifted-driftless GW signal pair with H=100 km s$^-1$ Mpc$^-1$, D=4000 Mpc.
+# Simulate a drifted-driftless GW signal pair with H=100 km/s/Mpc, D=4000 Mpc.
 make args="-H 100 -D 4000" start
 ```
 
