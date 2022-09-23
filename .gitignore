@@ -131,7 +131,5 @@ dmypy.json
 # Self-defined
 
 results
-fd_visualization
-__pycache__
 *.npy
 *.pdf
