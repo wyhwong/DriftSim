@@ -57,7 +57,7 @@ def main(args, output_dir):
     if args.plot:
         driftless_fs = driftless_ts.to_frequencyseries()
         labels = ["$h_{drifted}(f)$", "$h_{driftless}(f)$"]
-        filename = f"(H={hubble_constant:.3f},D={luminosity_distance:.3f}).pdf"
+        filename = f"{output_dir}/(H={hubble_constant:.3f},D={luminosity_distance:.3f}).pdf"
         plot_fd([drifted_fs, driftless_fs],
                 labels, lisa_psd, filename)
 
