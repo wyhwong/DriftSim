@@ -17,7 +17,7 @@ make clean
 ## Arguments:
 ```bash
 1. --psd <path to psd file>                      # default: config/config.yaml
-2. -H <Hubble constant>                          # default: 67.8 km s$^-1$ Mpc$^-1$
+2. -H <Hubble constant>                          # default: 67.8 km/s/Mpc
 3. -D <Initial luminosity distance (in Mpc)>     # default: 1000 Mpc
 4. --plot                                        # default: False
 ```
