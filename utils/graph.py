@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 
 def plot_fd(frequency_series, labels, psd, filename):
     # Output directory, we create one if it doesn't exist
-    output_dir = 'fd_visualization'
     check = os.path.isdir(output_dir)
     if not check:
         os.mkdir(output_dir)
@@ -20,4 +19,4 @@ def plot_fd(frequency_series, labels, psd, filename):
     plt.ylabel('Amplitude spectral density (Hz$^{1/2}$)')
     plt.xlabel('Frequency (Hz)')
     plt.legend()
-    plt.savefig(os.path.abspath(f"{output_dir}/{filename}"))
+    plt.savefig(os.path.abspath(filename))
