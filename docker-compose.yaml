@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  driftsim:
+    container_name: driftsim
+    image: driftsim
+    build: ./
+    working_dir: /app
+    volumes:
+      - ./main.py:/app/main.py
+      - ./utils:/app/utils
+      - ./config:/app/config
+      - ./results:/app/results
+    command: python3 main.py ${args}

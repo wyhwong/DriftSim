@@ -3,10 +3,30 @@ Distinguishability test of simluated drifted-driftless gravitational-wave (GW) s
 
 ## Simulation
 Please run the following to compute the overlap and signal-to-noise ratio (SNR) of a simluated drifted-driftless GW signal pair:
+```bash
+# Build docker image
+make build
+
+# Start docker container
+make args="<args>" start
+
+# Remove docker container
+make clean
+```bash
+Current arguments:
+1. --psd <path to psd file>                      # default: config/config.yaml
+2. -H <Hubble constant>                          # default: 67.8 km s$^-1$ Mpc$^-1$
+3. -D <Initial luminosity distance (in Mpc)>     # default: 1000 Mpc
+4. --plot                                        # default: False
+
+## Example
+```bash
+# Simulate a drifted-driftless GW signal pair with H=67.8 km s$^-1$ Mpc$^-1$, D=1000 Mpc. Visualize the frequency-domain GW pair 
+make args="--plot" start
+
+# Simulate a drifted-driftless GW signal pair with H=100 km s$^-1$ Mpc$^-1$, D=4000 Mpc.
+make args="-H 100 -D 4000" start
 ```
-python3 main.py --psd <path to psd file> -H <Hubble constant> -D <Initial luminosity distance (in Mpc)>
-```
-Add the flag `--plot` if you want to generate the frequency domain plot of the waveform pair.
 
 ## Config
 The configs of the initial waveform, target waveform, and match can be adjusted in `config/config.yaml`
