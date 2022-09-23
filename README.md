@@ -12,13 +12,15 @@ make args="<args>" start
 
 # Remove docker container
 make clean
+```
+
+## Arguments:
 ```bash
-Current arguments:
 1. --psd <path to psd file>                      # default: config/config.yaml
 2. -H <Hubble constant>                          # default: 67.8 km s$^-1$ Mpc$^-1$
 3. -D <Initial luminosity distance (in Mpc)>     # default: 1000 Mpc
 4. --plot                                        # default: False
-
+```
 ## Example
 ```bash
 # Simulate a drifted-driftless GW signal pair with H=67.8 km s$^-1$ Mpc$^-1$, D=1000 Mpc. Visualize the frequency-domain GW pair 
