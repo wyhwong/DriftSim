@@ -14,7 +14,7 @@ make args="<args>" start
 make clean
 ```
 
-## Arguments:
+## Arguments
 ```bash
 1. --psd <path to psd file>                      # default: config/lisa.txt
 2. -H <Hubble constant>                          # default: 67.8 km/s/Mpc
