@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 # This script contains the function about psd operation
 import os
 import numpy as np

@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 # This script generate the initial waveform, apply redshift to input waveform, and resample the psd
 import bilby.gw.utils as gwutils
 import lalsimulation as lalsim

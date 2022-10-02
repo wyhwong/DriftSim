@@ -32,7 +32,7 @@ make args="-H 100 -D 4000" start
 ```
 
 ## Config
-The configs of the initial waveform, target waveform, and match can be adjusted in `config/config.yaml`
+The configs of the base waveform, target waveform, and match can be adjusted in `config/base.yaml`, `config/target.yaml`, `config/detector.yaml`.
 
 ## Results
 The script generates a .npy file, which contains the following:

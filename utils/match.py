@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 # This script compute the match and SNR of two signals
 # The match is optimised over inclination, azimuth, polarisation angle and time of arrival
 import numpy as np
