@@ -10,6 +10,6 @@ def load_target():
     with open("config/target.yaml", "r") as file:
         return yaml.load(file, Loader=yaml.SafeLoader)
 
-def load_detector():
+def load_match():
     with open("config/match.yaml", "r") as file:
         return yaml.load(file, Loader=yaml.SafeLoader)
