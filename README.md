@@ -31,7 +31,7 @@ make args="--plot" start
 make args="-H 100 -D 4000" start
 ```
 
-## Config
+## Configs
 The configs of the base waveform, target waveform, and match can be adjusted in `config/base.yaml`, `config/target.yaml`, and `config/detector.yaml` respectively.
 
 ## Results
