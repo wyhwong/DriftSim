@@ -1,10 +1,19 @@
 export DOCKER_BUILDKIT=1
 
+port ?= 8888
+args ?=
+
 build:
-	docker build -t driftsim .
+	port=${port} docker-compose build
 
 start:
-	args=${args} docker-compose up
+	port=${port} args=${args} docker-compose up driftsim
+
+jupyter_up:
+	port=${port} docker-compose up -d driftsim_jupyter
+
+jupyter_down:
+	port=${port} docker-compose kill driftsim_jupyter
 
 clean:
-	docker-compose down --remove-orphans
+	port=${port} docker-compose down --remove-orphans

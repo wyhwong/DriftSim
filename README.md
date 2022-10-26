@@ -1,6 +1,8 @@
 # DRIFT SIM
 Distinguishability test of simluated drifted-driftless gravitational-wave (GW) signal pairs
 
+---
+
 ## Simulation
 Please run the following to compute the overlap and signal-to-noise ratio (SNR) of a simluated drifted-driftless GW signal pair:
 ```bash
@@ -10,9 +12,11 @@ make build
 # Start docker container
 make args="<args>" start
 
-# Remove docker container
+# Remove all docker container
 make clean
 ```
+
+---
 
 ## Arguments
 ```bash
@@ -21,6 +25,9 @@ make clean
 3. -D <Initial luminosity distance (in Mpc)>     # default: 1000 Mpc
 4. --plot                                        # default: False
 ```
+
+---
+
 ## Example
 ```bash
 # Simulate a drifted-driftless GW signal pair with H=67.8 km/s/Mpc, D=1000 Mpc.
@@ -31,8 +38,12 @@ make args="--plot" start
 make args="-H 100 -D 4000" start
 ```
 
+---
+
 ## Configs
-The configs of the base waveform, target waveform, and match can be adjusted in `config/base.yaml`, `config/target.yaml`, and `config/detector.yaml` respectively.
+The configs of the base waveform, target waveform, and match can be adjusted in `config/base.yaml`, `config/target.yaml`, and `config/match.yaml` respectively.
+
+---
 
 ## Results
 The script generates a .npy file, which contains the following:
@@ -47,6 +58,22 @@ The script generates a .npy file, which contains the following:
     └── SNR of the driftless signal
 ```
 
+---
+
+## Jupyter Server
+Please run the following to set up the Jupyter server for development or data visualization:
+```
+# Set up Jupyter server (default port=8888 if no input)
+# This is for development or data visualization
+make port=<port> jupyter_up
+
+# Kill Jupyter server
+make jupyter_down
+```
+After set up the server, you can go to [here](https://localhost:8888) and the password is `driftsim`.
+
+---
+
 ## Mathematics
 Based on the approximation of Hubble's law $v_H = H_0 d$, we derive an approximated expression of time-dependent cosmological redshift, which is given by:
     $$z(t) = \frac{D_0 H_0}{c} e^{H_0 t}.$$
@@ -55,6 +82,8 @@ Hubble drift is the redshift drift due to the expansion of the Universe over tim
 The overlap of two simulated GW signals (drifted and driftless signals) is given by:
     $$\langle h|g \rangle = 2 \int_{f_{min}}^{f_{max}} \frac{h^{\*}(f)g(f) + h(f)g^{\*}(f)}{S_n(f)} \mathrm{d}f,$$
 where $S_n(f)$ is the one-sided power spectral density (PSD) of the instrumental noise, $f_{min}$ and $f_{max}$ are the lower and higher frequency cutoffs for the detection respectively.
+
+---
 
 ## Authors
 [@wyhwong](https://github.com/wyhwong), [@juan.calderonbustillo](https://git.ligo.org/juan.calderonbustillo)
