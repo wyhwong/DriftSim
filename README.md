@@ -1,4 +1,4 @@
-# DRIFT SIM
+# DriftSim
 Distinguishability test of simluated drifted-driftless gravitational-wave (GW) signal pairs
 
 ---
