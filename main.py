@@ -3,7 +3,7 @@ import argparse
 import logging
 import os
 import numpy as np
-from utils.common import load_base, load_target, load_match, check_and_create_dir
+from utils.common import load_base_waveform_params, load_target_waveform_params, load_match_params, check_and_create_dir
 from utils.waveform import Waveform
 from utils.detection import resample_psd, compute_match
 from utils.plot import plot_fd
@@ -28,18 +28,18 @@ def main(args, output_dir):
     output_path = os.path.abspath(f'{output_dir}/data(H={hubble_constant:.3f},D={luminosity_distance:.3f}).npy')
 
     logging.info(f"Constructing base waveform...")
-    init_waveform = Waveform(load_base())
+    init_waveform = Waveform(load_base_waveform_params())
     logging.info(f"Constructed base waveform, length: {len(init_waveform.amp)}.")
 
     logging.info(f"Constructing drifted waveform...")
-    drifted_ts = init_waveform.apply_redshift(load_target(),
+    drifted_ts = init_waveform.apply_redshift(load_target_waveform_params(),
                                               hubble_constant,
                                               luminosity_distance,
                                               drifted=True)
     logging.info(f"Constructed drifted waveform, length: {len(drifted_ts)}.")
 
     logging.info(f"Constructing driftless waveform...")
-    driftless_ts = init_waveform.apply_redshift(load_target(),
+    driftless_ts = init_waveform.apply_redshift(load_target_waveform_params(),
                                                 hubble_constant,
                                                 luminosity_distance,
                                                 drifted=False)
@@ -51,7 +51,7 @@ def main(args, output_dir):
     logging.info(f"Resampled psd profile, df={target_df}.")
 
     match, snr_drifted, snr_driftless = compute_match(drifted_ts, driftless_ts,
-                                                      lisa_psd, load_match())
+                                                      lisa_psd, load_match_params())
     logging.info(f"Computed match: match={match}, snr_dr={snr_drifted}, snr_dl={snr_driftless}")
 
     setting_info = [luminosity_distance, hubble_constant]
