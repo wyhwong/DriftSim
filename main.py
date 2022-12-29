@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
-# This script compute the match and SNR of simulated GW drifted-driftless signal pairs
-# In the distinguishability test, the settings are the following:
-# The binary systems have the same set of intrinsic parameters
-# Only difference: one waveform is Hubble drifted and one is driftless
-# Here the 'driftless' means that the distance of the GW source is assumed unchanged
-# The Hubble drift means the change in redshift of the GW source due to universal expansion
-# This Hubble drift increases over time and affects the frequency and amplitude of GW signals
-# Detector used: LISA, mission lifetime: 4 years
-
 import argparse
 import logging
 import os
 import numpy as np
 from utils.common import load_base, load_target, load_match, check_and_create_dir
 from utils.waveform import Waveform
-from utils.psd import resample_psd
-from utils.graph import plot_fd
-from utils.match import compute_match
+from utils.detection import resample_psd, compute_match
+from utils.plot import plot_fd
+
+
+# ------------------------------------------------------------------------------------------------- #
+# This script compute the match and SNR of simulated GW drifted-driftless signal pairs              #
+# In the distinguishability test, the settings are the following:                                   #
+# The binary systems have the same set of intrinsic parameters                                      #
+# Only difference: one waveform is Hubble drifted and one is driftless                              #
+# Here the 'driftless' means that the distance of the GW source is assumed unchanged                #
+# The Hubble drift means the change in redshift of the GW source due to universal expansion         #
+# This Hubble drift increases over time and affects the frequency and amplitude of GW signals       #
+# Detector used: LISA, mission lifetime: 4 years
+# ------------------------------------------------------------------------------------------------- #
+
 
 def main(args, output_dir):
     # Setting of the simulated waveform
@@ -67,17 +70,13 @@ if __name__ == "__main__":
     # Setting of parser, inputting parameters
     parser = argparse.ArgumentParser(description="Setting of the distinguishability test")
     parser.add_argument("-D", "--distance", type=float,
-                        default=1000.,
-                        help="Value of the targeted luminosity distance in Mpc")
+                        default=1000., help="Value of the targeted luminosity distance in Mpc")
     parser.add_argument("-H", "--hubble", type=float,
-                        default=67.8,
-                        help="Value of the targeted Hubble constant")
+                        default=67.8, help="Value of the targeted Hubble constant")
     parser.add_argument("--psd", type=str,
-                        default='config/lisa.txt',
-                        help="Path to the psd.txt")
+                        default='config/lisa.txt', help="Path to the psd.txt")
     parser.add_argument("--plot", action="store_true",
-                        default=False,
-                        help="Option to plot the frequency domain")
+                        default=False, help="Option to plot the frequency domain")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO)
     logging.info(f"Input parameters: {args}")
@@ -87,5 +86,4 @@ if __name__ == "__main__":
     exist = check_and_create_dir(output_dir)
     if not exist:
         logging.info(f"Output directory {output_dir} does not exists. Created.")
-
     main(args, output_dir)
