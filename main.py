@@ -12,8 +12,7 @@ import argparse
 import logging
 import os
 import numpy as np
-import yaml
-from utils.config import load_base, load_target, load_match
+from utils.common import load_base, load_target, load_match, check_and_create_dir
 from utils.waveform import Waveform
 from utils.psd import resample_psd
 from utils.graph import plot_fd
@@ -85,9 +84,8 @@ if __name__ == "__main__":
 
     # Output directory, we create one if it doesn't exist
     output_dir = os.path.abspath('results')
-    check = os.path.isdir(output_dir)
-    if not check:
-        os.mkdir(output_dir)
+    exist = check_and_create_dir(output_dir)
+    if not exist:
         logging.info(f"Output directory {output_dir} does not exists. Created.")
 
     main(args, output_dir)
