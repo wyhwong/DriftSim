@@ -41,7 +41,7 @@ make args="-H 100 -D 4000" start
 ---
 
 ## Configs
-The configs of the base waveform, target waveform, and match can be adjusted in `config/base.yaml`, `config/target.yaml`, and `config/match.yaml` respectively.
+The configs of the base waveform, target waveform, and match can be adjusted in `config/config.yaml`.
 
 ---
 
