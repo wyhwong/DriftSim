@@ -1,11 +1,10 @@
-#!/usr/bin/env python3
 import bilby.gw.utils as gwutils
 import lalsimulation as lalsim
 import numpy as np
 import pycbc
 from bilby.core import utils
-from scipy import interpolate
-from scipy import constants
+from scipy import interpolate, constants
+
 
 class Waveform():
     def __init__(self, config):
@@ -34,7 +33,6 @@ class Waveform():
         amp = self.amp[converted_start:]
         phase = self.phase[converted_start:]
         time = np.arange(len(amp)) * delta_time
-
         # Construct redshifted signal
         hubble_drift = np.exp(time * hubble_constant * 3.24078e-20)
         if drifted:
@@ -45,7 +43,6 @@ class Waveform():
             redshift = hubble_constant * luminosity_distance * 1000. / constants.c
         raw_complex_strain = amp * np.exp(-1j*phase)
         time = time * (1 + redshift)
-
         # Interpolate the signal with uniform time steps
         interpol = interpolate.interp1d(time, raw_complex_strain)
         interpol_time = np.arange(0, target_length, target_dt)

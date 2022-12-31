@@ -5,13 +5,13 @@ args ?=
 version ?= devel
 
 build:
-	port=${port} docker-compose build
+	docker-compose build
 
 develop:
-	port=${port} args=${args} docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d driftsim
+	docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d driftsim
 
 start:
-	port=${port} args=${args} docker-compose up driftsim
+	args=${args} docker-compose up driftsim
 
 jupyter_up:
 	port=${port} docker-compose up -d driftsim_jupyter

@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+
 
 def get_base_plot(nrows=1, ncols=1, height=6, width=10, title="", ylabel="", xlabel="", tpad=2.5, lpad=0.1, bpad=0.12, fontsize=12):
     fig, axes = plt.subplots(nrows, ncols, figsize=(width, height))
