@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  driftsim:
+    container_name: driftsim
+    image: driftsim
+    build: ./
+    volumes:
+      - ./config:/app/config
+      - ./utils:/app/utils
+      - ./main.py:/app/main.py
+    command: tail -f /dev/null

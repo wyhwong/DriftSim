@@ -74,6 +74,20 @@ After set up the server, you can go to [here](https://localhost:8888) and the pa
 
 ---
 
+## Development
+```bash
+# Start docker container for develop
+make develop
+
+# Enter docker container
+docker exec -it driftsim bash
+
+# Remove all docker container
+make clean
+```
+
+---
+
 ## Mathematics
 Based on the approximation of Hubble's law $v_H = H_0 d$, we derive an approximated expression of time-dependent cosmological redshift, which is given by:
     $$z(t) = \frac{D_0 H_0}{c} e^{H_0 t}.$$

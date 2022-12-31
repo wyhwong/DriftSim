@@ -3,7 +3,7 @@ import os
 import yaml
 
 def get_config():
-    with open("config/config.yaml", "r") as file:
+    with open("config/config.yml", "r") as file:
         return yaml.load(file, Loader=yaml.SafeLoader)
 
 def load_base_waveform_params():

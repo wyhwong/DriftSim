@@ -4,23 +4,15 @@ services:
     container_name: driftsim
     image: driftsim
     build: ./
-    working_dir: /app
     volumes:
       - ./results:/app/results
-      - ./config:/app/config
-      - ./utils:/app/utils
-      - ./main.py:/app/main.py
     command: python3 main.py ${args}
 
   driftsim_jupyter:
     container_name: driftsim_jupyter_${port}
     image: driftsim
-    working_dir: /app
     ports:
       - ${port}:8888
     volumes:
-      - ./results:/app/results
-      - ./config:/app/config
-      - ./utils:/app/utils
       - ./config/jupyter_notebook_config.py:/root/.jupyter/jupyter_notebook_config.py
     command: jupyter notebook
