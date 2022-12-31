@@ -5,6 +5,7 @@ services:
     image: driftsim
     build: ./
     volumes:
+      - ./config/config.yml:/app/config/config.yml
       - ./results:/app/results
     command: python3 main.py ${args}
 

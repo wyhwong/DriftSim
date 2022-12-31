@@ -56,7 +56,7 @@ def main(args, output_dir):
 
     setting_info = [luminosity_distance, hubble_constant]
     statistics_info = [match, snr_drifted, snr_driftless]
-    np.save(output_path, [setting_info, statistics_info])
+    np.save(output_path, np.array([setting_info, statistics_info], dtype=object))
     logging.info(f"Saved data at {output_path}")
 
     if args.plot:
