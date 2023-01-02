@@ -79,9 +79,6 @@ After set up the server, you can go to [here](https://localhost:8888) and the pa
 # Start docker container for develop
 make develop
 
-# Enter docker container
-docker exec -it driftsim bash
-
 # Remove all docker container
 make clean
 ```

@@ -9,6 +9,7 @@ build:
 
 develop:
 	docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d driftsim
+	docker exec -it driftsim bash
 
 start:
 	args=${args} docker-compose up driftsim
