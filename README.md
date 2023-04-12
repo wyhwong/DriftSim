@@ -1,5 +1,5 @@
 # DriftSim
-Distinguishability test of simluated drifted-driftless gravitational-wave (GW) signal pairs
+Distinguishability test of simluated gravitational-wave (GW) signal pairs with mimicked time-dependent/-independent redshift.
 
 ---
 
